@@ -856,6 +856,64 @@ body.cursor-active .cursor-follower {
     .footer-links { display: grid; gap: 8px; }
     .footer-bottom { display: flex; justify-content: space-between; gap: 16px; padding-top: 24px; color: rgba(89,87,87,.45); font-size: 11px; line-height: 1.55; }
 
+.field input,
+.field select {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid rgba(89,87,87,.10);
+  border-radius: 18px;
+  background: rgba(247,247,245,.78);
+  padding: 0 16px;
+  outline: 0;
+  color: rgba(49,48,48,.82);
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
+}
+
+.field input::placeholder {
+  color: rgba(89,87,87,.40);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: rgba(232,71,110,.34);
+  background: white;
+  box-shadow: 0 0 0 5px rgba(232,71,110,.08);
+}
+
+/* Select */
+.field select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 46px;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(89,87,87,.58) 50%),
+    linear-gradient(135deg, rgba(89,87,87,.58) 50%, transparent 50%);
+  background-position:
+    calc(100% - 24px) 50%,
+    calc(100% - 18px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+}
+
+.field select:required:invalid {
+  color: rgba(89,87,87,.40);
+}
+
+.field select option {
+  color: rgba(49,48,48,.82);
+  background: #fff;
+}
+
+.field select option[disabled] {
+  color: rgba(89,87,87,.40);
+}
+
     @media (max-width: 1020px) {
       body { cursor: auto; }
       .cursor-dot, .cursor-follower { display: none; }
