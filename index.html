@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyco-N Plus | Protección celular con 80% de absorción</title>
+  <meta name="description" content="Lyco-N Plus: fórmula nanohíbrida con 80% de absorción. Ciencia mexicana patentada por la UDG." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIzMiIgY3k9IjExIiByPSIxMCIgZmlsbD0iI0ZGRDY3QSIvPjxwYXRoIGQ9Ik01MC41IDE4LjNjLTMuNiAwLTYuOSAxLjUtOS4zIDMuOC0yLjUgMi40LTUuNyAzLjktOS4yIDMuOXMtNi44LTEuNS05LjItMy45Yy0yLjQtMi4zLTUuNy0zLjgtOS4zLTMuOEM2IDE4LjMgMCAyNC4zIDAgMzEuOHM2IDEzLjUgMTMuNSAxMy41YzMuNiAwIDYuOS0xLjUgOS4zLTMuOSAyLjQtMi40IDUuNy0zLjkgOS4yLTMuOXM2LjcgMS41IDkuMiAzLjljMi40IDIuNCA1LjcgMy45IDkuMyAzLjlDNTggNDUuMyA2NCAzOS4zIDY0IDMxLjhTNTggMTguMyA1MC41IDE4LjNaIiBmaWxsPSIjRTg0NzZFIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSI1MyIgcj0iMTAiIGZpbGw9IiM4Q0NFQjUiLz48L3N2Zz4=" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+<div class="noise"></div>
+
+  <div class="page-shell">
+    <nav class="nav" id="nav">
+      <a href="#inicio" class="brand" aria-label="Lyco-N Plus inicio">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTQiIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCA5NCAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE5LjMwNTUgMEMxNS45NTc1IDAgMTMuMjUxIDIuNzA2NTMgMTMuMjUxIDYuMDU0NUMxMy4yNTEgOS40MDI0NiAxNS45NTc1IDEyLjEwOSAxOS4zMDU1IDEyLjEwOUMyMi42NTM0IDEyLjEwOSAyNS4zNTk5IDkuNDAyNDYgMjUuMzU5OSA2LjA1NDVDMjUuMzU5OSAyLjcwNjUzIDIyLjY1MzQgMCAxOS4zMDU1IDBaIiBmaWxsPSIjRkZENjdBIi8+CjxwYXRoIGQ9Ik0zMC42NjM2IDkuNDY0OTlDMjguNDg5IDkuNDY0OTkgMjYuNTMzNCAxMC4zNDExIDI1LjA5NDEgMTEuNzMzNUMyMy42MjM1IDEzLjIzNTQgMjEuNTc0IDE0LjE1ODQgMTkuMzA1NiAxNC4xNTg0QzE3LjAzNzEgMTQuMTU4NCAxNC45ODc2IDEzLjIxOTcgMTMuNTE3IDExLjcxNzhDMTIuMDc3NyAxMC4zMjU1IDEwLjEyMjEgOS40NDkzNCA3Ljk0NzUgOS40NDkzNEMzLjU1MTM1IDkuNDQ5MzQgMCAxMy4wMTYzIDAgMTcuNDEyNUMwIDIxLjgwODYgMy41NjY5OSAyNS4zNiA3Ljk0NzUgMjUuMzZDMTAuMTIyMSAyNS4zNiAxMi4wNzc3IDI0LjQ4MzkgMTMuNTE3IDIzLjA3NTlDMTQuOTg3NiAyMS41NzQgMTcuMDM3MSAyMC42NTA5IDE5LjMwNTYgMjAuNjUwOUMyMS41NzQgMjAuNjUwOSAyMy42MjM1IDIxLjU4OTYgMjUuMDk0MSAyMy4wOTE1QzI2LjUzMzQgMjQuNDk5NSAyOC40ODkgMjUuMzYgMzAuNjYzNiAyNS4zNkMzNS4wNTk4IDI1LjM2IDM4LjYxMTEgMjEuNzkzIDM4LjYxMTEgMTcuNDEyNUMzOC42MTExIDEzLjAzMiAzNS4wNDQxIDkuNDQ5MzQgMzAuNjYzNiA5LjQ0OTM0IiBmaWxsPSIjRTg0ODZFIi8+CjxwYXRoIGQ9Ik0xOS4zMDU1IDIyLjczMThDMTUuOTU3NSAyMi43MzE4IDEzLjI1MSAyNS40MzgzIDEzLjI1MSAyOC43ODYzQzEzLjI1MSAzMi4xMzQyIDE1Ljk1NzUgMzQuODQwNyAxOS4zMDU1IDM0Ljg0MDdDMjIuNjUzNCAzNC44NDA3IDI1LjM1OTkgMzIuMTM0MiAyNS4zNTk5IDI4Ljc4NjNDMjUuMzU5OSAyNS40MzgzIDIyLjY1MzQgMjIuNzMxOCAxOS4zMDU1IDIyLjczMThaIiBmaWxsPSIjOENDQkI1Ii8+CjxwYXRoIGQ9Ik00Ni4zODYyIDExLjk2ODJWMjAuOTE3SDUxLjEyNjZWMjIuOTk3N0g0NC4zMDU1VjExLjk2ODJINDYuMzg2MloiIGZpbGw9IiM1QTU3NTciLz4KPHBhdGggZD0iTTU4LjQxNzEgMTEuOTY4Mkw1NC42NDY4IDE4LjUwNzdWMjIuOTk3N0g1Mi41MzQ3VjE4LjUwNzdMNDguNzY0NCAxMS45NjgySDUxLjIwNDlMNTMuNTk4NiAxNi4xMTRMNTUuOTkyMiAxMS45NjgySDU4LjQxNzFaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik02OC4yNDIxIDE5Ljc3NDlDNjguMDM4NyAyMC4zMzgxIDY3Ljc1NzEgMjAuOTE3IDY3LjMzNDcgMjEuNDE3NkM2Ni4zMTc4IDIyLjYzNzkgNjQuODAwMyAyMy4yMTY3IDYzLjI2NzEgMjMuMjE2N0M2MS42NDAxIDIzLjIxNjcgNjAuMTIyNSAyMi41NTk2IDU5LjIxNTIgMjEuNDE3NkM1OC4yOTIxIDIwLjMwNjggNTcuOTE2NiAxOC45MzAxIDU3LjkxNjYgMTcuNDc1MUM1Ny45MTY2IDE2LjAyMDIgNTguMzA3OCAxNC42MTIyIDU5LjIxNTIgMTMuNTE3QzYwLjE4NTEgMTIuMzEyNCA2MS42ODcgMTEuNzMzNSA2My4yNjcxIDExLjczMzVDNjQuODQ3MiAxMS43MzM1IDY2LjM0OTEgMTIuMzI4IDY3LjMzNDcgMTMuNTE3QzY3LjgxOTcgMTQuMTI3MiA2OC4xNDgzIDE0LjgxNTUgNjguMzUxNiAxNS40NzI2TDY2LjIwODMgMTUuODMyNEM2Ni4wODMxIDE1LjQ1NyA2NS45MjY3IDE1LjA4MTUgNjUuNjkyIDE0Ljc4NDJDNjUuMTQ0NSAxNC4wNDg5IDY0LjIyMTQgMTMuNjczNSA2My4yODI3IDEzLjY3MzVDNjIuMzQ0MSAxMy42NzM1IDYxLjQyMSAxNC4wNDg5IDYwLjg3MzUgMTQuNzg0MkM2MC4zMTAzIDE1LjUwMzkgNjAuMTM4MiAxNi41MDUyIDYwLjEyMjUgMTcuNDU5NUM2MC4xMzgyIDE4LjQyOTUgNjAuMzEwMyAxOS4zOTk0IDYwLjg3MzUgMjAuMTM0N0M2MS40MDU0IDIwLjg3IDYyLjMyODQgMjEuMjQ1NSA2My4yODI3IDIxLjIyOTlDNjQuMjIxNCAyMS4yNDU1IDY1LjEyODggMjAuODcgNjUuNjkyIDIwLjEzNDdDNjUuOTExMSAxOS44Mzc1IDY2LjA2NzUgMTkuNTA4OSA2Ni4xNzcgMTkuMTQ5MUw2OC4yNDIxIDE5Ljc0MzZWMTkuNzc0OVoiIGZpbGw9IiM1QTU3NTciLz4KPHBhdGggZD0iTTc2Ljk3MTcgMjAuMTY2Qzc3LjUxOTMgMTkuNDMwNyA3Ny43MDcgMTguNDQ1MSA3Ny43MDcgMTcuNDkwOEM3Ny43MDcgMTYuNTM2NCA3Ny41MTkzIDE1LjUzNTIgNzYuOTcxNyAxNC44MTU1Qzc2LjQyNDIgMTQuMDgwMiA3NS41MTY4IDEzLjcwNDggNzQuNTYyNSAxMy43MDQ4QzczLjYwODIgMTMuNzA0OCA3Mi43MDA4IDE0LjA4MDIgNzIuMTUzMiAxNC44MTU1QzcxLjU5IDE1LjUzNTIgNzEuNDE3OSAxNi41MzY0IDcxLjQwMjIgMTcuNDkwOEM3MS40MDIyIDE4LjQ2MDcgNzEuNTkgMTkuNDMwNyA3Mi4xNTMyIDIwLjE2NkM3Mi42ODUxIDIwLjkwMTMgNzMuNjA4MiAyMS4yNzY4IDc0LjU2MjUgMjEuMjYxMUM3NS41MTY4IDIxLjI3NjggNzYuNDI0MiAyMC45MDEzIDc2Ljk3MTcgMjAuMTY2Wk03MC41MTA1IDIxLjQxNzZDNjkuNjE4NyAyMC4zNTM3IDY5LjIyNzcgMTguOTQ1NyA2OS4yMjc3IDE3LjQ3NTFDNjkuMjI3NyAxNi4wMDQ1IDY5LjYxODcgMTQuNTk2NSA3MC41MTA1IDEzLjUxN0M3MS40ODA1IDEyLjMxMjQgNzIuOTgyNCAxMS43MzM1IDc0LjU2MjUgMTEuNzMzNUM3Ni4xNDI2IDExLjczMzUgNzcuNjQ0NSAxMi4zMjggNzguNjMwMSAxMy41MTdDNzkuNTY4OCAxNC42NTkxIDc5Ljg4MTcgMTYuMDA0NSA3OS45MTI5IDE3LjQ3NTFDNzkuODgxNyAxOS4wMDgzIDc5LjUzNzUgMjAuMzA2OCA3OC42MzAxIDIxLjQxNzZDNzcuNjEzMiAyMi42Mzc5IDc2LjA5NTcgMjMuMjMyNCA3NC41NjI1IDIzLjIzMjRDNzMuMDI5MyAyMy4yMzI0IDcxLjQ0OTIgMjIuNjIyMiA3MC41MTA1IDIxLjQxNzZaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik04My4xMDQ0IDE2LjY2MTZIODAuODgyOVYxOC4yNzNIODMuMTA0NFYxNi42NjE2WiIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNOTEuMDIwNyAxOS4xNjQ4VjExLjk2ODJIOTMuMTMyOFYyMi45OTc3SDkxLjI4NjdMODYuMjMzNSAxNS44MDEyVjIyLjk5NzdIODQuMTA1OFYxMS45NjgySDg1Ljk1MTlMOTEuMDIwNyAxOS4xNjQ4WiIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNNjUuNjI5MSAyOS4xNzc0QzY1LjYyOTEgMjguNTk4NSA2NS4zOTQ0IDI4LjAzNTMgNjQuOTg3NyAyNy42MTI5QzY0LjYxMjIgMjcuMjA2MSA2NC4wMDIxIDI2LjkyNDUgNjMuNDM4OSAyNi45MjQ1SDYwLjA0NFYzMS40MzAySDYzLjQzODlDNjQuMDQ5IDMxLjQzMDIgNjQuNzA2MSAzMS4xMTczIDY1LjEyODUgMzAuNjAxQzY1LjQ1NzEgMzAuMjA5OSA2NS42NDQ4IDI5LjY5MzYgNjUuNjI5MSAyOS4xNzc0Wk02Ni45MTIgMjkuMTc3NEM2Ni45MTIgMjkuOTc1MiA2Ni41ODM1IDMwLjc3MzEgNjYuMDk4NSAzMS4zNjc2QzY1LjQ3MjcgMzIuMTM0MiA2NC40NzE0IDMyLjYxOTIgNjMuNDM4OSAzMi42MTkySDYwLjA0NFYzNi43NDk0SDU4LjgwODFWMjUuNzE5OUg2My40NTQ1QzYzLjg0NTcgMjUuNzE5OSA2NC4yNTI0IDI1Ljc5ODEgNjQuNjEyMiAyNS45MjMzQzY1LjE0NDEgMjYuMTExIDY1LjYyOTIgMjYuNDM5NSA2Ni4wMDQ2IDI2Ljg3NzZDNjYuNTgzNSAyNy40ODc3IDY2LjkxMiAyOC4zMzI2IDY2LjkyNzcgMjkuMTc3NCIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNNjkuMzg0MyAyNS43MzU1VjM1LjUyOTFINzQuMjY1NFYzNi43NjVINjguMTQ4M1YyNS43MzU1SDY5LjM4NDNaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik04My40NjQxIDMyLjc5MTJDODMuNDY0MSAzMy43NDU2IDgzLjEwNDMgMzQuNzE1NSA4Mi41MDk4IDM1LjQ1MDhDODEuNzExOSAzNi40Njc3IDgwLjQ0NDcgMzcuMDE1MyA3OS4xNDYyIDM2Ljk5OTdDNzcuODYzMyAzNi45OTk3IDc2LjU4MDUgMzYuNDY3NyA3NS43ODI2IDM1LjQ1MDhDNzUuMjAzNyAzNC43MzEyIDc0LjgxMjYgMzMuNjk4NiA3NC44MTI2IDMyLjc5MTJWMjUuNzUxMUg3Ni4wNjQyVjMyLjMyMTlDNzYuMDY0MiAzMy4yNzYyIDc2LjEyNjcgMzMuOTAyIDc2LjcyMTIgMzQuNjk5OUM3Ny4zMDAxIDM1LjQxOTUgNzguMjIzMSAzNS44NDE5IDc5LjE0NjIgMzUuODQxOUM4MC4wNjkyIDM1Ljg0MTkgODAuOTc2NiAzNS40MTk1IDgxLjU1NTUgMzQuNjg0MkM4Mi4xNSAzMy45MzMzIDgyLjIxMjUgMzMuMjc2MiA4Mi4yMTI1IDMyLjMyMTlWMjUuNzUxMUg4My40NjQxVjMyLjc5MTJaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik05MS44MTg0IDI4Ljg0ODhDOTEuNTIxMSAyOC4xNDQ4IDkxLjE0NTcgMjcuNTUwMyA5MC41MDQyIDI3LjE1OTJDOTAuMDUwNSAyNi44Nzc1IDg5LjQyNDcgMjYuNzA1NSA4OC44MzAyIDI2LjcwNTVDODguMjUxNCAyNi42ODk4IDg3LjY4ODIgMjYuODE1IDg3LjIzNDUgMjcuMDQ5N0M4Ni43MTgyIDI3LjM0NjkgODYuMzc0IDI3Ljg5NDUgODYuMzc0IDI4LjQ0MkM4Ni4zNzQgMjguODAxOSA4Ni41MTQ4IDI5LjE2MTcgODYuNzQ5NSAyOS40MTJDODcuMDc4IDI5Ljc0MDUgODcuNjcyNSAyOS45NzUyIDg4LjI2NyAzMC4xNjI5TDkwLjIzODMgMzAuNzQxOEM5MS4wMzYxIDMwLjk3NjUgOTEuNjkzMiAzMS4yODk0IDkyLjIyNTEgMzEuNzlDOTIuNzcyNyAzMi4zMjE5IDkzLjEzMjUgMzMuMDcyOSA5My4xMTY5IDMzLjg3MDdDOTMuMTE2OSAzNC43NzgxIDkyLjYzMTkgMzUuNzE2OCA5MS44NDk3IDM2LjI2NDRDOTEuMDgzMSAzNi44MTE5IDkwLjA1MDUgMzYuOTg0IDg5LjAwMjMgMzYuOTg0Qzg3LjU3ODYgMzYuOTg0IDg2LjMyNzEgMzYuNTQ2IDg1LjUxMzYgMzUuNDUwOEM4NS4wNDQyIDM0Ljg0MDcgODQuNzYyNiAzNC4xMjExIDg0LjYwNjIgMzMuNDMyN0w4NS44NTc4IDMzLjEwNDFDODUuOTY3MyAzMy42ODMgODYuMTcwNiAzNC4yNDYyIDg2LjQ5OTIgMzQuNjg0MkM4Ny4wNzggMzUuNDk3OCA4OC4wNzkzIDM1LjgyNjMgODkuMDQ5MiAzNS44MjYzQzg5Ljc2ODkgMzUuODI2MyA5MC42MTM3IDM1LjYyMjkgOTEuMTE0NCAzNS4yNjMxQzkxLjU5OTMgMzQuOTAzMyA5MS44MDI3IDM0LjM1NTcgOTEuODAyNyAzMy44NTUxQzkxLjgwMjcgMzMuNDMyNyA5MS42MzA2IDMzLjAyNTkgOTEuMzE3NyAzMi43MTNDOTAuOTU3OSAzMi4zNTMyIDkwLjUwNDIgMzIuMTM0MiA4OS45NDEgMzEuOTc3N0w4Ny45MjI4IDMxLjM4MzJDODcuMTg3NSAzMS4xNDg1IDg2LjQ1MjIgMzAuODgyNiA4NS44NzM0IDMwLjM1MDdDODUuMzI1OCAyOS44NTAxIDg1LjA1OTkgMjkuMDgzNSA4NS4wNTk5IDI4LjQxMDdDODUuMDU5OSAyNy4zNzgyIDg1Ljc0ODIgMjYuNDIzOSA4Ni42NTU2IDI1Ljk3MDJDODcuMzc1MyAyNS41OTQ3IDg4LjEyNjIgMjUuNTE2NSA4OC44MzAyIDI1LjUxNjVDODkuNjEyNSAyNS41MTY1IDkwLjQ1NzMgMjUuNjg4NSA5MS4xMyAyNi4wNzk3QzkyLjAyMTggMjYuNTk1OSA5Mi42Nzg4IDI3LjQ1NjQgOTMuMDU0MyAyOC41MjAzTDkxLjgxODQgMjguODY0NFYyOC44NDg4WiIgZmlsbD0iIzVBNTc1NyIvPgo8L3N2Zz4K" alt="Lyco-N Plus" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#rutina">Rutina</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#ciencia">Ciencia</a></li>
+        <li><a href="#producto">Producto</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+      </ul>
+      <a href="#contacto" class="btn btn-primary btn-small btn-float">Quiero conocerlo</a>
+    </nav>
+
+    <section class="hero hero-premium" id="inicio">
+      <canvas class="particle-canvas" data-particles="hero"></canvas>
+      <div class="container hero-layout hero-layout-premium">
+        <div class="hero-copy reveal is-visible">
+          <div class="hero-kicker fade-up is-visible"><span class="dot"></span>Tu ritual diario antioxidante</div>
+          <h1 class="split-title is-visible" aria-label="Protección celular que sí cabe en tu rutina">
+            <span class="line-wrap"><span class="line">Protección celular</span></span>
+            <span class="line-wrap"><span class="line">que sí cabe</span></span>
+            <span class="line-wrap"><span class="line">en tu <strong>rutina</strong></span></span>
+          </h1>
+          <p class="hero-lead fade-up delay-1 is-visible">Lyco-N Plus combina licopeno y tecnología nanohíbrida para acompañar tu bienestar diario con ciencia mexicana, en una cápsula simple de integrar a tu día.</p>
+          <div class="hero-actions fade-up delay-2 is-visible">
+            <a href="#contacto" class="btn btn-primary btn-float">Quiero conocerlo</a>
+            <a href="#beneficios" class="btn btn-soft btn-float">Ver beneficios</a>
+          </div>
+          <div class="trust-row fade-up delay-3 is-visible">
+            <span>Suplemento alimenticio</span>
+            <span>1 cápsula al día</span>
+            <span>Ciencia mexicana</span>
+          </div>
+        </div>
+
+        <div class="hero-visual hero-visual-premium" id="heroVisual" aria-label="Cápsula animada representando nanotecnología Lyco-N Plus">
+          <!-- Glow rings -->
+          <div class="glow-ring glow-ring-a"></div>
+          <div class="glow-ring glow-ring-b"></div>
+          <div class="glow-ring glow-ring-c"></div>
+
+          <div class="premium-capsule png-capsule" id="capsuleScene">
+            <div class="capsule-aura"></div>
+            <div class="capsule-shadow-soft"></div>
+
+            <!-- PNG real render -->
+            <img
+              class="capsule-png-img"
+              src="assets/pill-02.png"
+              alt="Cápsula Lyco-N Plus abriéndose con moléculas nanotecnológicas"
+              draggable="false"
+            />
+
+            <!-- Partículas canvas encima del PNG -->
+            <canvas class="capsule-particle-canvas" id="capsuleParticles"></canvas>
+
+            <!-- Esferas/moléculas animadas encima del PNG -->
+            <svg class="capsule-molecules-svg" viewBox="0 0 920 920" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="omBlue" cx="35%" cy="28%" r="70%"><stop offset="0%" stop-color="#DFFFFF" stop-opacity=".97"/><stop offset="55%" stop-color="#6EBAE8" stop-opacity=".82"/><stop offset="100%" stop-color="#3A8EC4" stop-opacity=".60"/></radialGradient>
+                <radialGradient id="omPink" cx="35%" cy="28%" r="70%"><stop offset="0%" stop-color="#FFE8EE" stop-opacity=".97"/><stop offset="55%" stop-color="#E8476E" stop-opacity=".78"/><stop offset="100%" stop-color="#C0304E" stop-opacity=".55"/></radialGradient>
+                <radialGradient id="omGreen" cx="35%" cy="28%" r="70%"><stop offset="0%" stop-color="#E8FFF6" stop-opacity=".97"/><stop offset="55%" stop-color="#8CCEB5" stop-opacity=".80"/><stop offset="100%" stop-color="#5AAE8E" stop-opacity=".55"/></radialGradient>
+                <radialGradient id="omYellow" cx="35%" cy="28%" r="70%"><stop offset="0%" stop-color="#FFFDE8" stop-opacity=".97"/><stop offset="55%" stop-color="#FFD67A" stop-opacity=".82"/><stop offset="100%" stop-color="#E8B030" stop-opacity=".55"/></radialGradient>
+                <radialGradient id="omPurple" cx="35%" cy="28%" r="70%"><stop offset="0%" stop-color="#EEF0FF" stop-opacity=".97"/><stop offset="55%" stop-color="#6673B5" stop-opacity=".78"/><stop offset="100%" stop-color="#4A5490" stop-opacity=".55"/></radialGradient>
+                <filter id="omGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <filter id="omSparkGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+
+              <!-- Moléculas flotantes que emergen de la cápsula -->
+              <g filter="url(#omGlow)">
+                <!-- M1 azul grande -->
+                <g class="mol-float" style="--tx:-60px;--ty:-110px;--del:.5s;--dur:2.0s;--orb:7.2s;--ox:9px;--oy:-11px">
+                  <circle cx="490" cy="430" r="40" fill="url(#omBlue)" stroke="#6EBAE8" stroke-width="3.5"/>
+                  <ellipse cx="476" cy="417" rx="13" ry="7" fill="#FFFFFF" opacity=".44"/>
+                  <path d="M474 420 l20 -11 20 11 v24 l-20 11 -20 -11z" fill="none" stroke="#4A8EC4" stroke-width="2.5" opacity=".52"/>
+                  <circle cx="490" cy="430" r="40" fill="none" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="2"/>
+                </g>
+                <!-- M2 verde -->
+                <g class="mol-float" style="--tx:55px;--ty:-140px;--del:.85s;--dur:2.4s;--orb:8.4s;--ox:-7px;--oy:-13px">
+                  <circle cx="570" cy="370" r="30" fill="url(#omGreen)" stroke="#8CCEB5" stroke-width="3"/>
+                  <ellipse cx="558" cy="359" rx="10" ry="5.5" fill="#FFFFFF" opacity=".42"/>
+                  <path d="M556 362 l15 -8 15 8 v18 l-15 8 -15 -8z" fill="none" stroke="#5AAE8E" stroke-width="2" opacity=".50"/>
+                </g>
+                <!-- M3 rosa -->
+                <g class="mol-float" style="--tx:120px;--ty:-80px;--del:1.1s;--dur:2.2s;--orb:6.8s;--ox:11px;--oy:-8px">
+                  <circle cx="650" cy="440" r="34" fill="url(#omPink)" stroke="#E8476E" stroke-width="3"/>
+                  <ellipse cx="637" cy="428" rx="11" ry="6" fill="#FFFFFF" opacity=".40"/>
+                  <path d="M635 431 l18 -10 18 10 v21 l-18 10 -18 -10z" fill="none" stroke="#C0304E" stroke-width="2.5" opacity=".50"/>
+                </g>
+                <!-- M4 amarillo arriba -->
+                <g class="mol-float" style="--tx:-20px;--ty:-180px;--del:1.4s;--dur:2.6s;--orb:7.9s;--ox:-5px;--oy:-15px">
+                  <circle cx="530" cy="295" r="26" fill="url(#omYellow)" stroke="#FFD67A" stroke-width="2.5"/>
+                  <ellipse cx="519" cy="284" rx="9" ry="5" fill="#FFFFFF" opacity=".40"/>
+                  <path d="M517 287 l13 -7 13 7 v15 l-13 7 -13 -7z" fill="none" stroke="#E8B030" stroke-width="2" opacity=".46"/>
+                </g>
+                <!-- M5 púrpura -->
+                <g class="mol-float" style="--tx:165px;--ty:-145px;--del:1.7s;--dur:2.9s;--orb:9.2s;--ox:13px;--oy:-10px">
+                  <circle cx="695" cy="330" r="23" fill="url(#omPurple)" stroke="#6673B5" stroke-width="2.5"/>
+                  <ellipse cx="685" cy="320" rx="8" ry="4" fill="#FFFFFF" opacity=".38"/>
+                  <path d="M683 323 l11 -6 11 6 v13 l-11 6 -11 -6z" fill="none" stroke="#4A5490" stroke-width="1.8" opacity=".44"/>
+                </g>
+                <!-- M6 azul pequeño izq -->
+                <g class="mol-float" style="--tx:-130px;--ty:-45px;--del:.35s;--dur:1.9s;--orb:6.4s;--ox:-9px;--oy:-7px">
+                  <circle cx="400" cy="470" r="24" fill="url(#omBlue)" stroke="#6EBAE8" stroke-width="2.5"/>
+                  <ellipse cx="390" cy="460" rx="8" ry="4.5" fill="#FFFFFF" opacity=".38"/>
+                </g>
+                <!-- M7 verde lejano -->
+                <g class="mol-float" style="--tx:200px;--ty:-50px;--del:2.0s;--dur:3.1s;--orb:8.8s;--ox:7px;--oy:-6px">
+                  <circle cx="735" cy="475" r="20" fill="url(#omGreen)" stroke="#8CCEB5" stroke-width="2"/>
+                  <ellipse cx="726" cy="466" rx="7" ry="3.5" fill="#FFFFFF" opacity=".36"/>
+                </g>
+                <!-- M8 rosa pequeño -->
+                <g class="mol-float" style="--tx:90px;--ty:-210px;--del:2.3s;--dur:2.7s;--orb:7.5s;--ox:5px;--oy:-12px">
+                  <circle cx="610" cy="255" r="18" fill="url(#omPink)" stroke="#E8476E" stroke-width="2"/>
+                  <ellipse cx="602" cy="247" rx="6" ry="3.5" fill="#FFFFFF" opacity=".36"/>
+                </g>
+              </g>
+
+              <!-- Líneas de conexión entre moléculas -->
+              <g stroke-dasharray="4 7" stroke-linecap="round" opacity=".0" class="mol-bond">
+                <line x1="490" y1="430" x2="570" y2="370" stroke="#6EBAE8" stroke-width="1.5"/>
+                <line x1="570" y1="370" x2="650" y2="440" stroke="#8CCEB5" stroke-width="1.5"/>
+                <line x1="490" y1="430" x2="530" y2="295" stroke="#6673B5" stroke-width="1.2"/>
+                <line x1="650" y1="440" x2="695" y2="330" stroke="#E8476E" stroke-width="1.2"/>
+              </g>
+
+              <!-- Sparks / destellos -->
+              <g filter="url(#omSparkGlow)">
+                <circle class="v7-spark" style="--sp-del:0s;--sp-dur:3.2s"    cx="345" cy="380" r="7"   fill="#E8476E"/>
+                <circle class="v7-spark" style="--sp-del:.55s;--sp-dur:2.9s"  cx="415" cy="310" r="5.5" fill="#FFD67A"/>
+                <circle class="v7-spark" style="--sp-del:1.15s;--sp-dur:3.6s" cx="738" cy="390" r="6"   fill="#8CCEB5"/>
+                <circle class="v7-spark" style="--sp-del:1.75s;--sp-dur:2.6s" cx="782" cy="520" r="5"   fill="#6EBAE8"/>
+                <circle class="v7-spark" style="--sp-del:.35s;--sp-dur:4.1s"  cx="322" cy="530" r="5.5" fill="#6673B5"/>
+                <circle class="v7-spark" style="--sp-del:2.3s;--sp-dur:3.3s"  cx="598" cy="215" r="4.5" fill="#FFD67A"/>
+                <!-- Cruces -->
+                <g class="v7-spark" style="--sp-del:.9s;--sp-dur:2.7s" transform="translate(462,268)">
+                  <rect x="-1.5" y="-10" width="3" height="20" rx="1.5" fill="#6EBAE8"/>
+                  <rect x="-10"  y="-1.5" width="20" height="3"  rx="1.5" fill="#6EBAE8"/>
+                </g>
+                <g class="v7-spark" style="--sp-del:1.5s;--sp-dur:3.9s" transform="translate(712,232)">
+                  <rect x="-1.2" y="-8"  width="2.4" height="16" rx="1.2" fill="#E8476E"/>
+                  <rect x="-8"   y="-1.2" width="16" height="2.4" rx="1.2" fill="#E8476E"/>
+                </g>
+              </g>
+            </svg>
+
+            <!-- Floating stat cards -->
+            <div class="hero-stat stat-a"><b>80%</b><span>Tecnología Lyco-N</span></div>
+            <div class="hero-stat stat-b"><b>20%</b><span>Fórmulas en aceite</span></div>
+            <div class="hero-stat stat-c"><b>UDG</b><span>Ciencia mexicana</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="keyword-track">
+        <span>Licopeno</span><span>Rutina diaria</span><span>Absorción</span><span>Bienestar celular</span><span>Nanotecnología</span><span>Ciencia mexicana</span><span>Antioxidante</span><span>Constancia</span>
+        <span>Licopeno</span><span>Rutina diaria</span><span>Absorción</span><span>Bienestar celular</span><span>Nanotecnología</span><span>Ciencia mexicana</span><span>Antioxidante</span><span>Constancia</span>
+      </div>
+    </div>
+
+    <section class="section" id="rutina">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow fade-up">Rutina</span>
+          <h2 class="split-title">
+            <span class="line-wrap"><span class="line">Un hábito simple</span></span>
+            <span class="line-wrap"><span class="line">para <strong>todos los días</strong></span></span>
+          </h2>
+          <p class="section-copy fade-up delay-1">La propuesta visual se mueve de lo clínico a lo cotidiano: agua, desayuno, movimiento, constancia y producto integrado de forma natural.</p>
+        </div>
+        <div class="routine-grid">
+          <article class="routine-card reveal video-fallback" style="--fallback-image:url('assets/imagen-03.png')">
+            <div class="content"><small>01 / mañana</small><h3>Toma una cápsula con agua</h3><p>Un momento práctico que no complica tu día.</p></div>
+          </article>
+          <article class="routine-card reveal video-fallback" style="--fallback-image:url('assets/imagen-02.png')">
+            <div class="content"><small>02 / día activo</small><h3>Acompaña tu alimentación</h3><p>Bienestar diario con un enfoque más consciente.</p></div>
+          </article>
+          <article class="routine-card reveal video-fallback" style="--fallback-image:url('assets/imagen-04.png')">
+            <div class="content"><small>03 / constancia</small><h3>Convierte el cuidado celular en rutina</h3><p>La clave visual: cuidado repetible, no promesa milagro.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container benefit-layout">
+        <div class="benefit-panel reveal">
+          <div class="benefit-image video-fallback" style="--fallback-image:url('assets/imagen-01.png')"></div>
+          <div class="floating-note">
+            <h3>Diseñado para quienes buscan cuidarse mejor.</h3>
+            <p>Una narrativa más humana: claridad, hábito, constancia y ciencia explicada sin saturar.</p>
+          </div>
+        </div>
+        <div class="benefit-grid">
+            <article class="benefit-card reveal " style="--accent:var(--pink); --accent-soft:rgba(232,71,110,.10);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Antioxidante diario</span>
+              <h3>Tu escudo diario.</h3>
+              <p>Protege tus células del estrés cotidiano con un hábito simple desde el interior.</p>
+            </article>
+            <article class="benefit-card reveal delay-1" style="--accent:var(--blue); --accent-soft:rgba(110,186,232,.15);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Fórmula nanohíbrida</span>
+              <h3>Ciencia simple.</h3>
+              <p>Optimizamos el licopeno natural para que tu cuerpo lo reconozca y aproveche al máximo.</p>
+            </article>
+            <article class="benefit-card reveal delay-2" style="--accent:var(--green); --accent-soft:rgba(140,206,181,.18);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Alta absorción</span>
+              <h3>Absorción real.</h3>
+              <p>Fórmula dispersable en agua: tu cuerpo aprovecha hasta 4 veces más cada cápsula.</p>
+            </article>
+            <article class="benefit-card reveal delay-3" style="--accent:var(--yellow); --accent-soft:rgba(255,214,122,.24);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Ciencia mexicana</span>
+              <h3>Patente local.</h3>
+              <p>Desarrollado en Guadalajara con respaldo científico de la UdeG. Confianza real.</p>
+            </article>
+            <article class="benefit-card reveal delay-1" style="--accent:var(--orange); --accent-soft:rgba(242,153,26,.14);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Rutina práctica</span>
+              <h3>Sin enredos.</h3>
+              <p>Una sola cápsula por la mañana con tu vaso de agua. Así de fácil.</p>
+            </article>
+            <article class="benefit-card reveal delay-2" style="--accent:var(--purple); --accent-soft:rgba(102,115,181,.14);">
+              <div class="icon-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke-linecap="round"/></svg></div>
+              <span class="benefit-label">Compra informada</span>
+              <h3>Transparencia.</h3>
+              <p>Respuestas claras, base científica y cero promesas milagro. Cuidado honesto.</p>
+            </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="ciencia">
+      <div class="container science-wrap">
+        <div class="science-copy reveal">
+          <span class="eyebrow fade-up">Respaldo</span>
+          <h2 class="split-title">
+            <span class="line-wrap"><span class="line">Ciencia Mexicana</span></span>
+            <span class="line-wrap"><span class="line">y <strong>Respaldo Real</strong></span></span>
+          </h2>
+          <p class="fade-up delay-1">Una fórmula patentada que pertenece a la Universidad de Guadalajara (UDG)</p>
+          <ul class="science-list">
+            <li class="fade-up delay-1">Liderazgo científico del Dr. Gregorio Carbajal.</li>
+            <li class="fade-up delay-2">Basado en estudios publicados y ensayos clínicos rigurosos.</li>
+            <li class="fade-up delay-3">Enfoque en el equilibrio entre oxidación e inflamación celular.</li>
+          </ul>
+        </div>
+        <div class="video-card reveal" id="videoCard">
+          <canvas class="particle-canvas" data-particles="video"></canvas>
+          <div class="play-btn"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg></div>
+          <div class="video-caption">Video informativo · Explora toda su biodisponibilidad</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="comparativa">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow fade-up">Comparativa</span>
+          <h2 class="split-title">
+            <span class="line-wrap"><span class="line">No es solo tomar licopeno.</span></span>
+            <span class="line-wrap"><span class="line">Es cómo tu cuerpo puede <strong>aprovecharlo</strong>.</span></span>
+          </h2>
+        </div>
+        <div class="compare-wrap">
+          <article class="compare-card reveal">
+            <h3>Suplementos genéricos</h3>
+            <ul class="check-list muted">
+              <li>Información poco clara sobre absorción.</li>
+              <li>Claims exagerados que bajan la confianza.</li>
+              <li>Diseño centrado solo en producto, no en hábito.</li>
+              <li>Experiencia visual fría o demasiado técnica.</li>
+            </ul>
+          </article>
+          <article class="compare-card featured reveal delay-1">
+            <h3>Lyco-N Plus</h3>
+            <ul class="check-list">
+              <li>Fórmula nanohíbrida explicada de forma simple.</li>
+              <li>Comunicación responsable y cercana.</li>
+              <li>Una cápsula al día dentro de una rutina real.</li>
+              <li>Identidad visual premium, luminosa y wellness.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonios">
+      <canvas class="particle-canvas" data-particles="soft"></canvas>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow fade-up">Usuarios</span>
+          <h2 class="split-title">
+            <span class="line-wrap"><span class="line">Lo que dicen</span></span>
+            <span class="line-wrap"><span class="line"><strong>nuestros usuarios</strong></span></span>
+          </h2>
+        </div>
+      </div>
+      <div class="testimonial-marquee reveal">
+        <div class="testimonial-track left">
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Me ayudó a dejar de comprar a ciegas. Se siente como una elección más seria y con ciencia detrás.”</p><strong>María Fernanda</strong><span>Usuaria Lyco-N Plus</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Lo integré fácil a mi rutina diaria. Entendí por qué la absorción importa más que los miligramos.”</p><strong>Carlos R.</strong><span>Rutina diaria</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Excelente opción para quienes buscamos prevención y bienestar celular sin lenguaje clínico confuso.”</p><strong>Ana Sofía</strong><span>Bienestar celular</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Me gustó que el enfoque es claro: ciencia, absorción y una explicación fácil de entender.”</p><strong>Paola M.</strong><span>Compra informada</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Me ayudó a dejar de comprar a ciegas. Se siente como una elección más seria y con ciencia detrás.”</p><strong>María Fernanda</strong><span>Usuaria Lyco-N Plus</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Lo integré fácil a mi rutina diaria. Entendí por qué la absorción importa más que los miligramos.”</p><strong>Carlos R.</strong><span>Rutina diaria</span></div></article>
+        </div>
+        <div class="testimonial-track right">
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“El mensaje es directo y se siente confiable. No parece una promesa exagerada, sino una explicación seria.”</p><strong>Laura G.</strong><span>Elección consciente</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“La parte de la biodisponibilidad me hizo sentido. Compré porque entendí mejor qué estaba eligiendo.”</p><strong>Javier N.</strong><span>Biodisponibilidad</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Buscaba algo con respaldo y una comunicación clara. Lyco-N Plus me dio esa seguridad.”</p><strong>Regina C.</strong><span>Respaldo científico</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“Se nota diferente cuando una fórmula explica cómo se aprovecha, no solo cuánto contiene.”</p><strong>Roberto A.</strong><span>Información clara</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“El mensaje es directo y se siente confiable. No parece una promesa exagerada, sino una explicación seria.”</p><strong>Laura G.</strong><span>Elección consciente</span></div></article>
+          <article class="testimonial-card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Usuario Lyco-N Plus"><div><p>“La parte de la biodisponibilidad me hizo sentido. Compré porque entendí mejor qué estaba eligiendo.”</p><strong>Javier N.</strong><span>Biodisponibilidad</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product-section" id="producto">
+      <div class="container">
+        <div class="product-card reveal">
+          <div class="product-showcase">
+            <div class="capsules" aria-hidden="true"><span class="capsule-mini"><img src="assets/pill-03.png" alt="" /></span><span class="capsule-mini"><img src="assets/pill-03.png" alt="" /></span><span class="capsule-mini"><img src="assets/pill-03.png" alt="" /></span></div>
+            <img class="product-img-main" src="assets/product-01.png" alt="Lyco-N Plus" />
+          </div>
+          <div class="product-copy">
+            <span class="eyebrow fade-up">Producto</span>
+            <h2 class="split-title"><span class="line-wrap"><span class="line">Lyco-N Plus</span></span></h2>
+            <p>Suplemento alimenticio a base de licopeno con fórmula nanohíbrida disoluble en agua, pensado para acompañar una rutina diaria de bienestar.</p>
+            <div class="product-points">
+              <span>Licopeno</span><span>Fórmula nanohíbrida</span><span>1 cápsula al día</span><span>Hecho en México</span>
+            </div>
+            <a class="btn btn-primary btn-float" href="#contacto">Quiero conocerlo</a>
+            <div class="disclaimer">Este producto no es un medicamento. El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa. Consulta a un profesional de la salud si estás embarazada, en lactancia, bajo tratamiento médico o tienes condiciones particulares.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ <section class="section" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Estilo de Vida</div>
+          <h2>Rutina de mañana</h2>
+        </div>
+        <div class="video-gallery">
+          <article class="gallery-main reveal video-fallback" style="--fallback-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80')">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80"><source src="https://videos.pexels.com/video-files/854057/854057-hd_1920_1080_25fps.mp4" type="video/mp4"></video>
+            <div class="gallery-label"><b>El primer gran gesto de tu día.</b><span>Cuidar de ti no toma tiempo. Una cápsula con agua por la mañana acompaña tu desayuno de forma 100% natural.</span></div>
+          </article>
+          <div class="gallery-side-wrap">
+            <article class="gallery-side reveal delay-1 video-fallback" style="--fallback-image:url('https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80')">
+              <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80"><source src="https://videos.pexels.com/video-files/6646563/6646563-hd_1920_1080_24fps.mp4" type="video/mp4"></video>
+              <div class="gallery-label"><b>Disolución inteligente</b><span>Diseñado para mezclarse con agua, facilitando una digestión ligera y rápida, sin necesidad de aceites pesados.
+</span></div>
+            </article>
+            <article class="gallery-side reveal delay-2 video-fallback" style="--fallback-image:url('https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=900&q=80')">
+              <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=900&q=80"><source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_30fps.mp4" type="video/mp4"></video>
+              <div class="gallery-label"><b> Respaldado por expertos</b><span>Llevamos la alta ciencia molecular fuera del laboratorio para transformarla en un hábito diario y sostenible.</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<section class="section faq" id="faq">
+      <div class="container faq-shell">
+        <div class="section-head reveal">
+          <span class="eyebrow fade-up">FAQ</span>
+          <h2 class="split-title"><span class="line-wrap"><span class="line">Preguntas</span></span><span class="line-wrap"><span class="line"><strong>frecuentes</strong></span></span></h2>
+        </div>
+        <div class="faq-item reveal active">
+          <button class="faq-btn" type="button"><span>¿Qué es Lyco-N Plus?</span><span class="faq-icon">＋</span></button>
+          <div class="faq-panel"><p>Es un suplemento antioxidante a base de licopeno con una fórmula nanohíbrida patentada que se disuelve en agua para absorberse mucho mejor que las opciones tradicionales.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-btn" type="button"><span>¿Cómo se toma?</span><span class="faq-icon">＋</span></button>
+          <div class="faq-panel"><p>Solo toma 1 cápsula al día por la mañana junto con un vaso de agua y tu desayuno habitual.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-btn" type="button"><span>¿Qué significa &quot;fórmula nanohíbrida&quot;?</span><span class="faq-icon">＋</span></button>
+          <div class="faq-panel"><p>Significa que redujimos el tamaño del licopeno y lo hicimos amigable con el agua, logrando que tu cuerpo absorba el 80% del ingrediente en lugar del 20% de un suplemento común.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-btn" type="button"><span>¿Es un medicamento?</span><span class="faq-icon">＋</span></button>
+          <div class="faq-panel"><p>No, es un suplemento alimenticio. Su objetivo es el balance antioxidante cotidiano; no cura, trata ni previene enfermedades.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-btn" type="button"><span>¿Quién no debe consumirlo?</span><span class="faq-icon">＋</span></button>
+          <div class="faq-panel"><p>Es seguro para la mayoría de los adultos, pero no se recomienda en personas con enfermedades renales. Si estás embarazada o bajo tratamiento, consulta a tu médico.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-form" id="contacto">
+      <canvas class="particle-canvas" data-particles="form"></canvas>
+      <div class="container cta-grid">
+        <div class="cta-copy reveal">
+          <span class="eyebrow fade-up">Asesoría</span>
+          <h2 class="split-title">
+            <span class="line-wrap"><span class="line">Empieza hoy tu ruta</span></span>
+            <span class="line-wrap"><span class="line"><strong>antioxidante</strong></span></span>
+          </h2>
+          <p class="section-copy fade-up delay-1">Déjanos tus datos para recibir asesoría sobre nuestra fórmula nanotecnológica y cómo puede beneficiarte.</p>
+          <p class="section-copy fade-up delay-2" style="font-size:14px; margin-top:18px; color:rgba(89,87,87,.58);">Asesoría personalizada por un experto</p>
+        </div>
+        <div class="form-card reveal delay-1">
+          <form action="thankyou.html" method="get">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="correo">Correo</label>
+              <input id="correo" name="correo" type="email" placeholder="tu.correo@ejemplo.com" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" placeholder="55 0000 0000" autocomplete="tel" />
+            </div>
+            <label class="legal-check">
+              <input type="checkbox" name="acepto_terminos" required />
+              <span>Acepto los <a href="/terminos-y-condiciones" target="_blank" rel="noopener">Términos y Condiciones</a> y el <a href="/aviso-de-privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a>.</span>
+            </label>
+            <button type="submit" class="btn btn-primary btn-float">Agenda ahora</button>
+            <p class="legal-microcopy">Al enviar tus datos, aceptas que Lyco-N Plus pueda contactarte para brindarte información sobre el producto, seguimiento comercial y asesoría relacionada. Tus datos serán tratados conforme a nuestro Aviso de Privacidad.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <img class="footer-logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTQiIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCA5NCAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE5LjMwNTUgMEMxNS45NTc1IDAgMTMuMjUxIDIuNzA2NTMgMTMuMjUxIDYuMDU0NUMxMy4yNTEgOS40MDI0NiAxNS45NTc1IDEyLjEwOSAxOS4zMDU1IDEyLjEwOUMyMi42NTM0IDEyLjEwOSAyNS4zNTk5IDkuNDAyNDYgMjUuMzU5OSA2LjA1NDVDMjUuMzU5OSAyLjcwNjUzIDIyLjY1MzQgMCAxOS4zMDU1IDBaIiBmaWxsPSIjRkZENjdBIi8+CjxwYXRoIGQ9Ik0zMC42NjM2IDkuNDY0OTlDMjguNDg5IDkuNDY0OTkgMjYuNTMzNCAxMC4zNDExIDI1LjA5NDEgMTEuNzMzNUMyMy42MjM1IDEzLjIzNTQgMjEuNTc0IDE0LjE1ODQgMTkuMzA1NiAxNC4xNTg0QzE3LjAzNzEgMTQuMTU4NCAxNC45ODc2IDEzLjIxOTcgMTMuNTE3IDExLjcxNzhDMTIuMDc3NyAxMC4zMjU1IDEwLjEyMjEgOS40NDkzNCA3Ljk0NzUgOS40NDkzNEMzLjU1MTM1IDkuNDQ5MzQgMCAxMy4wMTYzIDAgMTcuNDEyNUMwIDIxLjgwODYgMy41NjY5OSAyNS4zNiA3Ljk0NzUgMjUuMzZDMTAuMTIyMSAyNS4zNiAxMi4wNzc3IDI0LjQ4MzkgMTMuNTE3IDIzLjA3NTlDMTQuOTg3NiAyMS41NzQgMTcuMDM3MSAyMC42NTA5IDE5LjMwNTYgMjAuNjUwOUMyMS41NzQgMjAuNjUwOSAyMy42MjM1IDIxLjU4OTYgMjUuMDk0MSAyMy4wOTE1QzI2LjUzMzQgMjQuNDk5NSAyOC40ODkgMjUuMzYgMzAuNjYzNiAyNS4zNkMzNS4wNTk4IDI1LjM2IDM4LjYxMTEgMjEuNzkzIDM4LjYxMTEgMTcuNDEyNUMzOC42MTExIDEzLjAzMiAzNS4wNDQxIDkuNDQ5MzQgMzAuNjYzNiA5LjQ0OTM0IiBmaWxsPSIjRTg0ODZFIi8+CjxwYXRoIGQ9Ik0xOS4zMDU1IDIyLjczMThDMTUuOTU3NSAyMi43MzE4IDEzLjI1MSAyNS40MzgzIDEzLjI1MSAyOC43ODYzQzEzLjI1MSAzMi4xMzQyIDE1Ljk1NzUgMzQuODQwNyAxOS4zMDU1IDM0Ljg0MDdDMjIuNjUzNCAzNC44NDA3IDI1LjM1OTkgMzIuMTM0MiAyNS4zNTk5IDI4Ljc4NjNDMjUuMzU5OSAyNS40MzgzIDIyLjY1MzQgMjIuNzMxOCAxOS4zMDU1IDIyLjczMThaIiBmaWxsPSIjOENDQkI1Ii8+CjxwYXRoIGQ9Ik00Ni4zODYyIDExLjk2ODJWMjAuOTE3SDUxLjEyNjZWMjIuOTk3N0g0NC4zMDU1VjExLjk2ODJINDYuMzg2MloiIGZpbGw9IiM1QTU3NTciLz4KPHBhdGggZD0iTTU4LjQxNzEgMTEuOTY4Mkw1NC42NDY4IDE4LjUwNzdWMjIuOTk3N0g1Mi41MzQ3VjE4LjUwNzdMNDguNzY0NCAxMS45NjgySDUxLjIwNDlMNTMuNTk4NiAxNi4xMTRMNTUuOTkyMiAxMS45NjgySDU4LjQxNzFaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik02OC4yNDIxIDE5Ljc3NDlDNjguMDM4NyAyMC4zMzgxIDY3Ljc1NzEgMjAuOTE3IDY3LjMzNDcgMjEuNDE3NkM2Ni4zMTc4IDIyLjYzNzkgNjQuODAwMyAyMy4yMTY3IDYzLjI2NzEgMjMuMjE2N0M2MS42NDAxIDIzLjIxNjcgNjAuMTIyNSAyMi41NTk2IDU5LjIxNTIgMjEuNDE3NkM1OC4yOTIxIDIwLjMwNjggNTcuOTE2NiAxOC45MzAxIDU3LjkxNjYgMTcuNDc1MUM1Ny45MTY2IDE2LjAyMDIgNTguMzA3OCAxNC42MTIyIDU5LjIxNTIgMTMuNTE3QzYwLjE4NTEgMTIuMzEyNCA2MS42ODcgMTEuNzMzNSA2My4yNjcxIDExLjczMzVDNjQuODQ3MiAxMS43MzM1IDY2LjM0OTEgMTIuMzI4IDY3LjMzNDcgMTMuNTE3QzY3LjgxOTcgMTQuMTI3MiA2OC4xNDgzIDE0LjgxNTUgNjguMzUxNiAxNS40NzI2TDY2LjIwODMgMTUuODMyNEM2Ni4wODMxIDE1LjQ1NyA2NS45MjY3IDE1LjA4MTUgNjUuNjkyIDE0Ljc4NDJDNjUuMTQ0NSAxNC4wNDg5IDY0LjIyMTQgMTMuNjczNSA2My4yODI3IDEzLjY3MzVDNjIuMzQ0MSAxMy42NzM1IDYxLjQyMSAxNC4wNDg5IDYwLjg3MzUgMTQuNzg0MkM2MC4zMTAzIDE1LjUwMzkgNjAuMTM4MiAxNi41MDUyIDYwLjEyMjUgMTcuNDU5NUM2MC4xMzgyIDE4LjQyOTUgNjAuMzEwMyAxOS4zOTk0IDYwLjg3MzUgMjAuMTM0N0M2MS40MDU0IDIwLjg3IDYyLjMyODQgMjEuMjQ1NSA2My4yODI3IDIxLjIyOTlDNjQuMjIxNCAyMS4yNDU1IDY1LjEyODggMjAuODcgNjUuNjkyIDIwLjEzNDdDNjUuOTExMSAxOS44Mzc1IDY2LjA2NzUgMTkuNTA4OSA2Ni4xNzcgMTkuMTQ5MUw2OC4yNDIxIDE5Ljc0MzZWMTkuNzc0OVoiIGZpbGw9IiM1QTU3NTciLz4KPHBhdGggZD0iTTc2Ljk3MTcgMjAuMTY2Qzc3LjUxOTMgMTkuNDMwNyA3Ny43MDcgMTguNDQ1MSA3Ny43MDcgMTcuNDkwOEM3Ny43MDcgMTYuNTM2NCA3Ny41MTkzIDE1LjUzNTIgNzYuOTcxNyAxNC44MTU1Qzc2LjQyNDIgMTQuMDgwMiA3NS41MTY4IDEzLjcwNDggNzQuNTYyNSAxMy43MDQ4QzczLjYwODIgMTMuNzA0OCA3Mi43MDA4IDE0LjA4MDIgNzIuMTUzMiAxNC44MTU1QzcxLjU5IDE1LjUzNTIgNzEuNDE3OSAxNi41MzY0IDcxLjQwMjIgMTcuNDkwOEM3MS40MDIyIDE4LjQ2MDcgNzEuNTkgMTkuNDMwNyA3Mi4xNTMyIDIwLjE2NkM3Mi42ODUxIDIwLjkwMTMgNzMuNjA4MiAyMS4yNzY4IDc0LjU2MjUgMjEuMjYxMUM3NS41MTY4IDIxLjI3NjggNzYuNDI0MiAyMC45MDEzIDc2Ljk3MTcgMjAuMTY2Wk03MC41MTA1IDIxLjQxNzZDNjkuNjE4NyAyMC4zNTM3IDY5LjIyNzcgMTguOTQ1NyA2OS4yMjc3IDE3LjQ3NTFDNjkuMjI3NyAxNi4wMDQ1IDY5LjYxODcgMTQuNTk2NSA3MC41MTA1IDEzLjUxN0M3MS40ODA1IDEyLjMxMjQgNzIuOTgyNCAxMS43MzM1IDc0LjU2MjUgMTEuNzMzNUM3Ni4xNDI2IDExLjczMzUgNzcuNjQ0NSAxMi4zMjggNzguNjMwMSAxMy41MTdDNzkuNTY4OCAxNC42NTkxIDc5Ljg4MTcgMTYuMDA0NSA3OS45MTI5IDE3LjQ3NTFDNzkuODgxNyAxOS4wMDgzIDc5LjUzNzUgMjAuMzA2OCA3OC42MzAxIDIxLjQxNzZDNzcuNjEzMiAyMi42Mzc5IDc2LjA5NTcgMjMuMjMyNCA3NC41NjI1IDIzLjIzMjRDNzMuMDI5MyAyMy4yMzI0IDcxLjQ0OTIgMjIuNjIyMiA3MC41MTA1IDIxLjQxNzZaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik04My4xMDQ0IDE2LjY2MTZIODAuODgyOVYxOC4yNzNIODMuMTA0NFYxNi42NjE2WiIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNOTEuMDIwNyAxOS4xNjQ4VjExLjk2ODJIOTMuMTMyOFYyMi45OTc3SDkxLjI4NjdMODYuMjMzNSAxNS44MDEyVjIyLjk5NzdIODQuMTA1OFYxMS45NjgySDg1Ljk1MTlMOTEuMDIwNyAxOS4xNjQ4WiIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNNjUuNjI5MSAyOS4xNzc0QzY1LjYyOTEgMjguNTk4NSA2NS4zOTQ0IDI4LjAzNTMgNjQuOTg3NyAyNy42MTI5QzY0LjYxMjIgMjcuMjA2MSA2NC4wMDIxIDI2LjkyNDUgNjMuNDM4OSAyNi45MjQ1SDYwLjA0NFYzMS40MzAySDYzLjQzODlDNjQuMDQ5IDMxLjQzMDIgNjQuNzA2MSAzMS4xMTczIDY1LjEyODUgMzAuNjAxQzY1LjQ1NzEgMzAuMjA5OSA2NS42NDQ4IDI5LjY5MzYgNjUuNjI5MSAyOS4xNzc0Wk02Ni45MTIgMjkuMTc3NEM2Ni45MTIgMjkuOTc1MiA2Ni41ODM1IDMwLjc3MzEgNjYuMDk4NSAzMS4zNjc2QzY1LjQ3MjcgMzIuMTM0MiA2NC40NzE0IDMyLjYxOTIgNjMuNDM4OSAzMi42MTkySDYwLjA0NFYzNi43NDk0SDU4LjgwODFWMjUuNzE5OUg2My40NTQ1QzYzLjg0NTcgMjUuNzE5OSA2NC4yNTI0IDI1Ljc5ODEgNjQuNjEyMiAyNS45MjMzQzY1LjE0NDEgMjYuMTExIDY1LjYyOTIgMjYuNDM5NSA2Ni4wMDQ2IDI2Ljg3NzZDNjYuNTgzNSAyNy40ODc3IDY2LjkxMiAyOC4zMzI2IDY2LjkyNzcgMjkuMTc3NCIgZmlsbD0iIzVBNTc1NyIvPgo8cGF0aCBkPSJNNjkuMzg0MyAyNS43MzU1VjM1LjUyOTFINzQuMjY1NFYzNi43NjVINjguMTQ4M1YyNS43MzU1SDY5LjM4NDNaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik04My40NjQxIDMyLjc5MTJDODMuNDY0MSAzMy43NDU2IDgzLjEwNDMgMzQuNzE1NSA4Mi41MDk4IDM1LjQ1MDhDODEuNzExOSAzNi40Njc3IDgwLjQ0NDcgMzcuMDE1MyA3OS4xNDYyIDM2Ljk5OTdDNzcuODYzMyAzNi45OTk3IDc2LjU4MDUgMzYuNDY3NyA3NS43ODI2IDM1LjQ1MDhDNzUuMjAzNyAzNC43MzEyIDc0LjgxMjYgMzMuNjk4NiA3NC44MTI2IDMyLjc5MTJWMjUuNzUxMUg3Ni4wNjQyVjMyLjMyMTlDNzYuMDY0MiAzMy4yNzYyIDc2LjEyNjcgMzMuOTAyIDc2LjcyMTIgMzQuNjk5OUM3Ny4zMDAxIDM1LjQxOTUgNzguMjIzMSAzNS44NDE5IDc5LjE0NjIgMzUuODQxOUM4MC4wNjkyIDM1Ljg0MTkgODAuOTc2NiAzNS40MTk1IDgxLjU1NTUgMzQuNjg0MkM4Mi4xNSAzMy45MzMzIDgyLjIxMjUgMzMuMjc2MiA4Mi4yMTI1IDMyLjMyMTlWMjUuNzUxMUg4My40NjQxVjMyLjc5MTJaIiBmaWxsPSIjNUE1NzU3Ii8+CjxwYXRoIGQ9Ik05MS44MTg0IDI4Ljg0ODhDOTEuNTIxMSAyOC4xNDQ4IDkxLjE0NTcgMjcuNTUwMyA5MC41MDQyIDI3LjE1OTJDOTAuMDUwNSAyNi44Nzc1IDg5LjQyNDcgMjYuNzA1NSA4OC44MzAyIDI2LjcwNTVDODguMjUxNCAyNi42ODk4IDg3LjY4ODIgMjYuODE1IDg3LjIzNDUgMjcuMDQ5N0M4Ni43MTgyIDI3LjM0NjkgODYuMzc0IDI3Ljg5NDUgODYuMzc0IDI4LjQ0MkM4Ni4zNzQgMjguODAxOSA4Ni41MTQ4IDI5LjE2MTcgODYuNzQ5NSAyOS40MTJDODcuMDc4IDI5Ljc0MDUgODcuNjcyNSAyOS45NzUyIDg4LjI2NyAzMC4xNjI5TDkwLjIzODMgMzAuNzQxOEM5MS4wMzYxIDMwLjk3NjUgOTEuNjkzMiAzMS4yODk0IDkyLjIyNTEgMzEuNzlDOTIuNzcyNyAzMi4zMjE5IDkzLjEzMjUgMzMuMDcyOSA5My4xMTY5IDMzLjg3MDdDOTMuMTE2OSAzNC43NzgxIDkyLjYzMTkgMzUuNzE2OCA5MS44NDk3IDM2LjI2NDRDOTEuMDgzMSAzNi44MTE5IDkwLjA1MDUgMzYuOTg0IDg5LjAwMjMgMzYuOTg0Qzg3LjU3ODYgMzYuOTg0IDg2LjMyNzEgMzYuNTQ2IDg1LjUxMzYgMzUuNDUwOEM4NS4wNDQyIDM0Ljg0MDcgODQuNzYyNiAzNC4xMjExIDg0LjYwNjIgMzMuNDMyN0w4NS44NTc4IDMzLjEwNDFDODUuOTY3MyAzMy42ODMgODYuMTcwNiAzNC4yNDYyIDg2LjQ5OTIgMzQuNjg0MkM4Ny4wNzggMzUuNDk3OCA4OC4wNzkzIDM1LjgyNjMgODkuMDQ5MiAzNS44MjYzQzg5Ljc2ODkgMzUuODI2MyA5MC42MTM3IDM1LjYyMjkgOTEuMTE0NCAzNS4yNjMxQzkxLjU5OTMgMzQuOTAzMyA5MS44MDI3IDM0LjM1NTcgOTEuODAyNyAzMy44NTUxQzkxLjgwMjcgMzMuNDMyNyA5MS42MzA2IDMzLjAyNTkgOTEuMzE3NyAzMi43MTNDOTAuOTU3OSAzMi4zNTMyIDkwLjUwNDIgMzIuMTM0MiA4OS45NDEgMzEuOTc3N0w4Ny45MjI4IDMxLjM4MzJDODcuMTg3NSAzMS4xNDg1IDg2LjQ1MjIgMzAuODgyNiA4NS44NzM0IDMwLjM1MDdDODUuMzI1OCAyOS44NTAxIDg1LjA1OTkgMjkuMDgzNSA4NS4wNTk5IDI4LjQxMDdDODUuMDU5OSAyNy4zNzgyIDg1Ljc0ODIgMjYuNDIzOSA4Ni42NTU2IDI1Ljk3MDJDODcuMzc1MyAyNS41OTQ3IDg4LjEyNjIgMjUuNTE2NSA4OC44MzAyIDI1LjUxNjVDODkuNjEyNSAyNS41MTY1IDkwLjQ1NzMgMjUuNjg4NSA5MS4xMyAyNi4wNzk3QzkyLjAyMTggMjYuNTk1OSA5Mi42Nzg4IDI3LjQ1NjQgOTMuMDU0MyAyOC41MjAzTDkxLjgxODQgMjguODY0NFYyOC44NDg4WiIgZmlsbD0iIzVBNTc1NyIvPgo8L3N2Zz4K" alt="Lyco-N Plus" />
+            <p>Suplemento alimenticio a base de licopeno con fórmula nanotecnológica disoluble en agua. Ciencia avanzada desarrollada en México para el mundo.</p>
+          </div>
+          <div>
+            <h4>Enlaces</h4>
+            <div class="footer-links"><a href="#rutina">Rutina</a><a href="#beneficios">Beneficios</a><a href="#ciencia">Ciencia</a><a href="#producto">Producto</a><a href="#faq">Preguntas</a></div>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <div class="footer-links"><a href="#">Aviso de Privacidad</a><a href="#">Términos de Uso</a></div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Lyco-N Plus. Ciencia y Salud para tu bienestar.</span>
+          <span>Este producto no es un medicamento. El consumo de este producto es responsabilidad de quien lo recomienda y de quien lo usa. No cura, alivia ni previene enfermedades.</span>
+          <span>Desarrollado por: <a href="http://dinametra.com/" target="_blank" rel="noopener noreferrer">Dinametra.com</a></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const progress = document.getElementById('progressBar');
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorFollower = document.getElementById('cursorFollower');
+    const heroVisual = document.getElementById('heroVisual');
+    const videoCard = document.getElementById('videoCard');
+
+    const onScroll = () => {
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = h > 0 ? `${(st / h) * 100}%` : '0%';
+      nav.classList.toggle('is-scrolled', st > 12);
+      if (videoCard) videoCard.style.transform = `translateY(${Math.min(26, st * 0.018)}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (matchMedia('(pointer:fine)').matches) {
+      let x = 0, y = 0;
+if (matchMedia('(pointer:fine)').matches) {
+  let x = 0, y = 0, fx = 0, fy = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    x = e.clientX;
+    y = e.clientY;
+
+    cursorDot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+  });
+
+  const loop = () => {
+    fx += (x - fx) * .16;
+    fy += (y - fy) * .16;
+
+    cursorFollower.style.transform = `translate(${fx}px, ${fy}px) translate(-50%, -50%)`;
+
+    requestAnimationFrame(loop);
+  };
+
+  loop();
+
+  document.querySelectorAll('a, button, .routine-card, .benefit-card, .compare-card, .product-card, .lifestyle-card, .testimonial-card, .faq-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+  });
+}      const heroVisual = document.getElementById('heroVisual');
+      const capsuleScene = document.getElementById('capsuleScene');
+      window.addEventListener('mousemove', (e) => {
+        x = e.clientX; y = e.clientY;
+        if (cursorSvg) cursorSvg.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+
+        if (heroVisual) {
+          const rect = heroVisual.getBoundingClientRect();
+          const mx = (e.clientX - rect.left) / rect.width - .5;
+          const my = (e.clientY - rect.top) / rect.height - .5;
+          heroVisual.style.transform = `rotateX(${my * -4}deg) rotateY(${mx * 6}deg)`;
+          if (capsuleScene) {
+            capsuleScene.style.transform = `translate3d(${mx * 14}px, ${my * 10}px, 0)`;
+          }
+        }
+      });
+      document.querySelectorAll('a, button, .routine-card, .benefit-card, .compare-card, .product-card, .lifestyle-card, .testimonial-card, .faq-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+      });
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          if (entry.target.classList.contains('counter')) animateCounter(entry.target);
+          // No removemos la clase para que al subir de regreso siga visible.
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+
+    document.querySelectorAll('.reveal, .split-title, .fade-up, .counter').forEach(el => revealObserver.observe(el));
+
+    function animateCounter(el) {
+      if (el.dataset.done) return;
+      el.dataset.done = 'true';
+      const final = Number(el.dataset.count || 0);
+      const suffix = el.classList.contains('number') || el.classList.contains('vs-number') ? '%' : '';
+      const duration = 1250;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(final * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('active'));
+    });
+
+    function initParticles(canvas) {
+      const ctx = canvas.getContext('2d');
+      const kind = canvas.dataset.particles || 'soft';
+      const colors = ['#E8476E', '#6EBAE8', '#8CCEB5', '#FFD67A', '#6673B5'];
+      let particles = [];
+      let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const counts = { hero: 74, form: 92, video: 46, soft: 38, footer: 220 };
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        w = Math.max(1, rect.width); h = Math.max(1, rect.height);
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        particles = Array.from({ length: counts[kind] || 38 }, (_, i) => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * (kind === 'footer' ? 4.4 : kind === 'form' ? 2.8 : 2.2) + (kind === 'footer' ? 1.5 : .9),
+          vx: (Math.random() - .5) * .28,
+          vy: (Math.random() - .5) * .24,
+          a: Math.random() * (kind === 'footer' ? .58 : .28) + (kind === 'footer' ? .28 : .08),
+          c: colors[i % colors.length]
+        }));
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -10) p.x = w + 10;
+          if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10;
+          if (p.y > h + 10) p.y = -10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = hexToRgba(p.c, p.a);
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      function hexToRgba(hex, a) {
+        const v = hex.replace('#', '');
+        const r = parseInt(v.slice(0,2), 16), g = parseInt(v.slice(2,4), 16), b = parseInt(v.slice(4,6), 16);
+        return `rgba(${r},${g},${b},${a})`;
+      }
+      resize(); draw();
+      window.addEventListener('resize', resize, { passive: true });
+    }
+    document.querySelectorAll('[data-particles]').forEach(initParticles);
+
+    // Canvas de partículas encima de la cápsula PNG
+    (function() {
+      const canvas = document.getElementById('capsuleParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = ['#E8476E','#6EBAE8','#8CCEB5','#FFD67A','#6673B5'];
+      let particles = [], w = 0, h = 0;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      function resize() {
+        const r = canvas.getBoundingClientRect();
+        w = Math.max(1, r.width); h = Math.max(1, r.height);
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        particles = Array.from({ length: 52 }, (_, i) => ({
+          x: Math.random() * w, y: Math.random() * h,
+          r: Math.random() * 3 + 1,
+          vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .28,
+          a: Math.random() * .28 + .06,
+          c: colors[i % colors.length]
+        }));
+      }
+      function hexToRgba(hex, a) {
+        const v = hex.replace('#','');
+        return `rgba(${parseInt(v.slice(0,2),16)},${parseInt(v.slice(2,4),16)},${parseInt(v.slice(4,6),16)},${a})`;
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10; if (p.y > h + 10) p.y = -10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = hexToRgba(p.c, p.a);
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      resize(); draw();
+      window.addEventListener('resize', resize, { passive: true });
+    })();
+
+
+    // Payment logo loader: uses /assets/filename and tries common fallbacks if the uploaded names vary slightly.
+    document.querySelectorAll('.pay-logo img[data-srcs]').forEach((img) => {
+      const candidates = img.dataset.srcs.split('|').map(src => src.trim()).filter(Boolean);
+      let index = 0;
+      img.addEventListener('error', () => {
+        index += 1;
+        if (index < candidates.length) {
+          img.src = candidates[index];
+        } else {
+          img.closest('.pay-logo')?.classList.add('logo-error');
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
