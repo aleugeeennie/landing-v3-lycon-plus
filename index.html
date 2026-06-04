@@ -421,34 +421,51 @@
       <div class="container cta-grid">
         <div class="cta-copy reveal">
           <span class="eyebrow fade-up">Asesoría</span>
-          <h2 class="split-title">
-            <span class="line-wrap"><span class="line">Empieza hoy tu ruta</span></span>
-            <span class="line-wrap"><span class="line"><strong>antioxidante</strong></span></span>
+          <h2 class="split-title" style="font-size: 45px !important;">
+            <span class="line-wrap"><span class="line">Descubre cómo nuestra fórmula antioxidante</span></span>
+            <span class="line-wrap"><span class="line"><strong>puede transformar tu práctica o tu bienestar</strong></span></span>
           </h2>
-          <p class="section-copy fade-up delay-1">Déjanos tus datos para recibir asesoría sobre nuestra fórmula nanotecnológica y cómo puede beneficiarte.</p>
-          <p class="section-copy fade-up delay-2" style="font-size:14px; margin-top:18px; color:rgba(89,87,87,.58);">Asesoría personalizada por un experto</p>
+          <p class="section-copy fade-up delay-1">Obtén información personalizada según tu perfil. Ya sea que busques mejorar tu salud con nuestra tecnología antioxidante o explorar oportunidades de distribución profesional, te ayudamos a encontrar la mejor opción para ti.</p>
         </div>
         <div class="form-card reveal delay-1">
           <form action="thankyou.html" method="get">
-            <div class="field">
-              <label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre" autocomplete="name" />
-            </div>
-            <div class="field">
-              <label for="correo">Correo</label>
-              <input id="correo" name="correo" type="email" placeholder="tu.correo@ejemplo.com" autocomplete="email" />
-            </div>
-            <div class="field">
-              <label for="telefono">Teléfono</label>
-              <input id="telefono" name="telefono" type="tel" placeholder="55 0000 0000" autocomplete="tel" />
-            </div>
-            <label class="legal-check">
-              <input type="checkbox" name="acepto_terminos" required />
-              <span>Acepto los <a href="/terminos-y-condiciones" target="_blank" rel="noopener">Términos y Condiciones</a> y el <a href="/aviso-de-privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a>.</span>
-            </label>
-            <button type="submit" class="btn btn-primary btn-float">Agenda ahora</button>
-            <p class="legal-microcopy">Al enviar tus datos, aceptas que Lyco-N Plus pueda contactarte para brindarte información sobre el producto, seguimiento comercial y asesoría relacionada. Tus datos serán tratados conforme a nuestro Aviso de Privacidad.</p>
-          </form>
+
+  <div class="field">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre" autocomplete="name" />
+  </div>
+
+  <div class="field">
+    <label for="correo">Correo</label>
+    <input id="correo" name="correo" type="email" placeholder="tu.correo@ejemplo.com" autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for="telefono">Teléfono</label>
+    <input id="telefono" name="telefono" type="tel" placeholder="55 0000 0000" autocomplete="tel" />
+  </div>
+
+  <div class="field">
+    <label for="interes">¿Qué estás buscando?</label>
+    <select id="interes" name="interes" required>
+      <option value="" selected disabled>Selecciona una opción</option>
+      <option value="Quiero conocer el producto">Quiero conocer el producto</option>
+      <option value="Soy médico y me interesa distribuir">Soy médico y me interesa distribuir</option>
+    </select>
+  </div>
+
+  <label class="legal-check">
+    <input type="checkbox" name="acepto_terminos" required />
+    <span>Acepto los <a href="/terminos-y-condiciones" target="_blank" rel="noopener">Términos y Condiciones</a> y el <a href="/aviso-de-privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a>.</span>
+  </label>
+
+  <button type="submit" class="btn btn-primary btn-float">Solicitar información</button>
+
+  <p class="legal-microcopy">
+    Al enviar tus datos, aceptas que Lyco-N Plus pueda contactarte para brindarte información sobre el producto, seguimiento comercial y asesoría relacionada. Tus datos serán tratados conforme a nuestro Aviso de Privacidad.
+  </p>
+
+</form>
         </div>
       </div>
     </section>
